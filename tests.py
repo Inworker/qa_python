@@ -75,7 +75,7 @@ class TestBooksCollector:
         collector = BooksCollector()
         first_ganre = 'Ониме'
         collector.add_book_in_favorites(first_ganre)
-        assert collector.get_list_of_favorites_books not in collector.favorites
+        assert collector.get_list_of_favorites_books() not in collector.favorites
 
     def test_get_books_genre_add_3_different_books_ganre(self):# Список книг с 3 разными жанрами
         collector = BooksCollector()
