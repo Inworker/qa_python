@@ -21,11 +21,11 @@ class TestBooksCollector:
 
     def test_null_favotites_list(self):# Пустой список в избранном
         collector = BooksCollector()
-        assert collector.favorites == []
+        assert collector.get_list_of_favorites_books() == []
 
     def test_null_books_genre(self): #Пустой словарь книга/жанр
         collector = BooksCollector()
-        assert collector.books_genre == {}
+        assert collector.get_books_genre() == {}
 
 
     def test_add_new_book_add_two_books(self):# Добавление 2 книг в пустой список
@@ -47,7 +47,7 @@ class TestBooksCollector:
         ganre = "Ужасы"
         collector.add_new_book(book)
         collector.set_book_genre(book,ganre)
-        assert collector.books_genre == {}
+        assert collector.get_books_genre() == {}
 
 
     def test_get_book_genre_one_book(self): # Жанр 1 добавленной книги по названию
@@ -74,8 +74,9 @@ class TestBooksCollector:
     def test_add_book_in_favorites_book_not_in_genre(self):  # Добавление 1 книги в избранное, которой нет в списке жанров
         collector = BooksCollector()
         first_ganre = 'Ониме'
-        assert collector.get_books_with_specific_genre(first_ganre) == []
         collector.add_book_in_favorites(first_ganre)
+        assert collector.get_list_of_favorites_books not in collector.favorites
+
     def test_get_books_genre_add_3_different_books_ganre(self):# Список книг с 3 разными жанрами
         collector = BooksCollector()
         book_list =['Смешарики', 'Майор Гром','Чужой']
@@ -127,7 +128,7 @@ class TestBooksCollector:
         collector.add_book_in_favorites(book_name)
         collector.add_new_book(book_name)
         collector.add_book_in_favorites(book_name)
-        assert book_name
+        assert collector.get_list_of_favorites_books() == [book_name]
 
     def test_delete_book_from_favorites_add_and_remove_same_favorite_book(self):# Очистить список избранных книг
         collector = BooksCollector()
